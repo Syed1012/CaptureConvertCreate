@@ -31,7 +31,6 @@ function Header(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Divider />
-      <Divider />
       <List>
         {navItems.map((item) => (
           <ListItem key={item} style={{ margin: "20px" }} disablePadding>
