@@ -9,6 +9,7 @@ import Skeleton from "@mui/material/Skeleton";
 import axios from "axios";
 import ThumbnailComponent from "./ThumbnailComponent";
 import { useNavigate } from "react-router-dom"; 
+import OcrComponent from './OcrComponent.jsx';
 
 const UrlComponent = () => {
   const [url, setUrl] = useState("");
@@ -245,6 +246,11 @@ const UrlComponent = () => {
         </>
       )}
       {cloudinaryUrl && <ThumbnailComponent imageUrl={cloudinaryUrl} />}
+
+      <br />
+      <br />
+
+      <OcrComponent />
     </Container>
   );
 };
