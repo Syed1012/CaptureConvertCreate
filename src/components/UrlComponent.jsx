@@ -247,8 +247,6 @@ const UrlComponent = () => {
       )}
       {cloudinaryUrl && <ThumbnailComponent imageUrl={cloudinaryUrl} />}
 
-      <br />
-      <br />
 
       <OcrComponent />
     </Container>
