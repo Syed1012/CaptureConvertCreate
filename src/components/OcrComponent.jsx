@@ -2,17 +2,20 @@
 
 import { Container, Typography, IconButton } from "@mui/material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import Button from "@mui/material/Button";
 import React, { useState } from "react";
 import Tesseract from "tesseract.js";
+import Skeleton from "@mui/material/Skeleton";
 
 const OcrComponent = () => {
   const [ocrText, setOcrText] = useState("");
   const [loading, setLoading] = useState(false);
-  const [previewImg, setpreviewImg] = useState("");
+  const [previewImg, setPreviewImg] = useState("");
   const [error, setError] = useState("");
+  const [converting, setConverting] = useState(false);
+  const [showTextContainer, setShowTextContainer] = useState(false);
 
   const handleOcr = async (file) => {
-    setLoading(true);
     const {
       data: { text },
     } = await Tesseract.recognize(file, "eng", {
@@ -20,26 +23,27 @@ const OcrComponent = () => {
     });
     setOcrText(text);
     setLoading(false);
+    setConverting(false); // Stop converting
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const fileType = file.type;
-      if (
-        fileType === "image/png" ||
-        fileType === "image/jpg" ||
-        fileType === "image/webp"
-      ) {
+      if (fileType === "image/png" || fileType === "image/jpeg" || fileType === "image/webp") {
         setError("");
         const reader = new FileReader();
         reader.onloadend = () => {
-          setpreviewImg(reader.result);
-          handleOcr(file);
+          setLoading(true);
+          setConverting(true); // Start converting
+          setTimeout(() => {
+            setPreviewImg(reader.result);
+            handleOcr(file);
+          }, 500);
         };
         reader.readAsDataURL(file);
       } else {
-        setError("Please Select a valid image file (PNG, JPEG, WEBP).");
+        setError("Please select a valid image file (PNG, JPEG, WEBP).");
       }
     }
   };
@@ -79,7 +83,7 @@ const OcrComponent = () => {
         >
           {loading ? (
             <Skeleton
-              variant="square"
+              variant="rectangular"
               width="100%"
               height="100%"
               animation="pulse"
@@ -130,6 +134,23 @@ const OcrComponent = () => {
           <Typography variant="body1">{ocrText}</Typography>
         </Container>
       )}
+      <Button
+        variant="contained"
+        onClick={() => {}}
+        style={{
+          marginTop: "3px",
+          marginLeft: "220px",
+          marginBottom: "240px",
+          fontFamily: "system-ui",
+          fontSize: "15px",
+          fontWeight: "bold",
+          backgroundColor: "#5C8374",
+          color: "black",
+        }}
+        disabled={converting}
+      >
+        {converting ? "Converting..." : "Convert"}
+      </Button>
     </>
   );
 };
