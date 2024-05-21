@@ -85,7 +85,7 @@ function Header(props) {
             onClick={() => navigate("/")}
             style={{ cursor: "pointer" }}
           >
-            ScreenShot Tool
+            Capture Convert Create
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
