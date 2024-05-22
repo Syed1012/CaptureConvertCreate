@@ -19,7 +19,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 const drawerWidth = 240;
-const navItems = ["Home", "Album"];
+const navItems = ["Home", "Album", "Img to Text"];
 
 function Header(props) {
   const { window } = props;
@@ -30,6 +30,16 @@ function Header(props) {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const handleNavigation = (item) => {
+    if (item === "Album") {
+      navigate("/thumbnail");
+    } else if (item === "Img to Text") {
+      navigate("/", { state: { scrollTo: "convert-section" } });
+    } else {
+      navigate("/");
+    }
+  };
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Divider />
@@ -38,7 +48,7 @@ function Header(props) {
           <ListItem key={item} style={{ margin: "20px" }} disablePadding>
             <ListItemButton
               sx={{ textAlign: "center" }}
-              onClick={() => navigate(item === "Album" ? "/thumbnail" : "/")}
+              onClick={() => handleNavigation(item)}
             >
               <ListItemText primary={item} />
             </ListItemButton>
@@ -102,7 +112,7 @@ function Header(props) {
                     textDecorationLine: "underline",
                   },
                 }}
-                onClick={() => navigate(item === "Album" ? "/thumbnail" : "/")}
+                onClick={() => handleNavigation(item)}
               >
                 {item}
               </Button>

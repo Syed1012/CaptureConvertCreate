@@ -8,8 +8,8 @@ import Typography from "@mui/material/Typography";
 import Skeleton from "@mui/material/Skeleton";
 import axios from "axios";
 import ThumbnailComponent from "./ThumbnailComponent";
-import { useNavigate } from "react-router-dom"; 
-import OcrComponent from './OcrComponent.jsx';
+import { useNavigate } from "react-router-dom";
+import OcrComponent from "./OcrComponent.jsx";
 
 const UrlComponent = () => {
   const [url, setUrl] = useState("");
@@ -71,7 +71,6 @@ const UrlComponent = () => {
       setImageDate(new Date().toLocaleString());
       console.log("Request Received");
       console.log("Screenshot URL:", screenshotUrl); // Log the Blob URL
-
     } catch (error) {
       setError("Failed to Capture ScreenShotss");
     } finally {
@@ -83,7 +82,7 @@ const UrlComponent = () => {
     try {
       const formData = new FormData();
       formData.append("file", screenshotBlob, "screenshot.png"); // Use the blob data from captured screenshot
-  
+
       const response = await axios.post(
         "http://localhost:3007/upload",
         formData,
@@ -93,17 +92,14 @@ const UrlComponent = () => {
           },
         }
       );
-  
+
       // console.log("Uploaded to Cloudinary:", response.data.url);
       setCloudinaryUrl(response.data.url); // Set the Cloudinary URL
       navigate("/thumbnail", { state: { cloudinaryUrl: response.data.url } });
-  
     } catch (error) {
       console.error("Error uploading to Cloudinary:", error);
     }
   };
-  
-
 
   return (
     <Container maxWidth="sm">
@@ -247,8 +243,9 @@ const UrlComponent = () => {
       )}
       {cloudinaryUrl && <ThumbnailComponent imageUrl={cloudinaryUrl} />}
 
-
-      <OcrComponent />
+      <div id="convert-section">
+        <OcrComponent />
+      </div>
     </Container>
   );
 };
