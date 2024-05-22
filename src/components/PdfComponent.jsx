@@ -36,6 +36,11 @@ const PdfComponent = () => {
 
           if (i === files.length - 1) {
             doc.save("images.pdf");
+
+            // Clear state after saving the PDF
+            setFiles([]);
+            setPreviewUrls([]);
+            document.getElementById("file-input").value = null;
           }
         };
       }
@@ -73,73 +78,74 @@ const PdfComponent = () => {
           padding: "20px",
           cursor: "pointer",
           position: "relative",
-          height: "300px",
+          height:"300px"
         }}
         onClick={() => document.getElementById("file-input").click()}
-      >
-        <input
-          type="file"
-          id="file-input"
-          multiple
-          accept="image/*"
-          onChange={handleFilesChange}
-          style={{ display: "none" }}
-        />
-        <IconButton>
-          <PictureAsPdfIcon style={{ fontSize: "48px", color: "#5C8374" }} />
-        </IconButton>
-        <Typography variant="body1" style={{ fontFamily: "system-ui" }}>
-          Add Photos
-        </Typography>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "10px",
-        }}
-      >
-        {previewUrls.map((url, index) => (
-          <div key={index} style={{ position: "relative" }}>
-            <img
-              src={url}
-              alt={`Preview ${index + 1}`}
-              style={{
-                width: "100px",
-                height: "100px",
-                objectFit: "cover",
-                borderRadius: "5px",
-                boxShadow: "0 2px 5px rgba(0.1, 5, 0.1)",
-              }}
-            />
-          </div>
-        ))}
-      </div>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        marginTop="40px"
-        marginBottom="20px"
-      >
-        <Button
-          variant="contained"
-          onClick={handleConvert}
-          style={{
-            fontFamily: "system-ui",
-            fontSize: "18px",
-            fontWeight: "bold",
-            backgroundColor: "#5C8374",
-            color: "black",
-          }}
-          disabled={loading || files.length === 0}
         >
-          {loading ? "Converting..." : "Convert to PDF"}
-        </Button>
-      </Box>
-    </Container>
-  );
+          <input
+            type="file"
+            id="file-input"
+            multiple
+            accept="image/*"
+            onChange={handleFilesChange}
+            style={{ display: "none" }}
+          />
+          <IconButton>
+            <PictureAsPdfIcon style={{ fontSize: "48px", color: "#5C8374" }} />
+          </IconButton>
+          <Typography variant="body1" style={{ fontFamily: "system-ui" }}>
+            Add Photos
+          </Typography>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "10px",
+          }}
+        >
+          {previewUrls.map((url, index) => (
+            <div key={index} style={{ position: "relative" }}>
+              <img
+                src={url}
+                alt={`Preview ${index + 1}`}
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  objectFit: "cover",
+                  borderRadius: "5px",
+                  boxShadow: "0 2px 5px rgba(0.1, 5, 0.1)",
+                }}
+              />
+            </div>
+          ))}
+        </div>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          marginTop="40px"
+          marginBottom="20px"
+          cursor= "pointer"
+        >
+          <Button
+            variant="contained"
+            onClick={handleConvert}
+            style={{
+              fontFamily: "system-ui",
+              fontSize: "15px",
+              fontWeight: "bold",
+              backgroundColor: "#5C8374",
+              color: "black",
+            }}
+            disabled={loading || files.length === 0}
+          >
+            {loading ? "Converting..." : "Convert to PDF"}
+          </Button>
+        </Box>
+      </Container>
+    );
 };
 
 export default PdfComponent;
