@@ -4,6 +4,7 @@ import UrlComponent from "./components/UrlComponent";
 import ThumbnailComponent from "./components/ThumbnailComponent";
 import Header from "./Layout/Header";
 import MediaCard from './Layout/MediaCard';
+import PdfComponent from "./components/PdfComponent";
 
 function ScrollToTop(){
   const {state} = useLocation();
@@ -30,6 +31,7 @@ function App() {
         <Route path="/" exact element={<UrlComponent />}></Route>
         <Route path="/thumbnail" exact element={<ThumbnailComponent />}></Route>
         <Route path="/card" exact element={<MediaCard/>}></Route>
+        <Route path="/ImgtoPdf" exact element={<PdfComponent />}></Route>
       </Routes>
     </Router>
   );

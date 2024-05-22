@@ -19,7 +19,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 const drawerWidth = 240;
-const navItems = ["Home", "Album", "Img to Text"];
+const navItems = ["Home", "Album", "Img to Text", "Img to Pdf"];
 
 function Header(props) {
   const { window } = props;
@@ -35,6 +35,8 @@ function Header(props) {
       navigate("/thumbnail");
     } else if (item === "Img to Text") {
       navigate("/", { state: { scrollTo: "convert-section" } });
+    } else if (item === "Img to Pdf") {
+      navigate("/ImgToPdf");
     } else {
       navigate("/");
     }
