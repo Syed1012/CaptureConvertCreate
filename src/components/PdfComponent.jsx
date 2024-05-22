@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Container, Typography, IconButton, Box } from "@mui/material";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
-import Skeleton from "@mui/material/Skeleton";
 import { jsPDF } from "jspdf";
 
 const PdfComponent = () => {
