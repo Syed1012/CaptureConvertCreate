@@ -1,6 +1,6 @@
 # Capture Convert Create 📸✍️📄
 
-This project is a comprehensive web-based tool that allows users to capture screenshots of websites, convert images to text using OCR, and later, create PDFs from the images or extracted text. Users can input a website URL, capture the screenshot, view the captured image, and convert images to text.
+This project is a comprehensive web-based tool that allows users to capture screenshots of websites, convert images to text using OCR, and later, create PDFs from the images or extracted text. Users can input a website URL, capture the screenshot, view the captured image, and Extract text based images to text.
 
 ## Features
 
