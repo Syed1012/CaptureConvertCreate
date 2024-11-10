@@ -14,7 +14,7 @@ This project is a comprehensive web-based tool that allows users to capture scre
 
 - **Frontend**: React.js, Material-UI (MUI), React Router DOM
 - **Backend**: Node.js, Axios, Cloudinary, CORS, dotenv, Nodemon
-- **OCR**: Tesseract.js
+- **OCR**: Tesseract.js (Powerfull tool)
 
 ## Screenshots
 
